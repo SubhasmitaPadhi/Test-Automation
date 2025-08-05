@@ -1,36 +1,14 @@
 package testrunner;
 
-import io.cucumber.testng.AbstractTestNGCucumberTests;
-import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features",
-        glue = "stepdefinitions",
-        plugin = {
-                "pretty",
-                "html:target/cucumber-reports/cucumber-pretty",
-                "json:target/cucumber-reports/CucumberTestReport.json",
-                "timeline:target/test-output-thread/"
-        }
+        features = "src/test/feature",
+        glue = "src/test/resources/StepDefination",
+        tags = "@SmokeTest",
+        plugin = {"pretty", "html:target/cucumber-reports/cucumber-html"},
+        monochrome = true
 )
-public class TestRunner extends AbstractTestNGCucumberTests {
-
-    @Override
-    @DataProvider(parallel = true)
-    public Object[][] scenarios() {
-        return super.scenarios();
-    }
-
-    @BeforeSuite
-    public void beforeSuite() {
-        System.out.println("================ BEFORE SUITE ================");
-    }
-
-    @AfterSuite
-    public void afterSuite() {
-        System.out.println("================ AFTER SUITE ================");
-    }
+public class TestRunner {
 }
