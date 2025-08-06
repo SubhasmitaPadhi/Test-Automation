@@ -22,14 +22,11 @@ public class StepDefinition extends BasePage{
     Page page;
 
     @Given("^User launched SwagLabs application$")
-    public void user_launched_swaglabs_application() {
+    public void lunchDemoQAURL() {
         try {
             System.out.println("browser::" + WebActions.getProperty("browser"));
             page = createPlaywrightPageInstance(WebActions.getProperty("browser"));
             page.navigate(WebActions.getProperty("url"));
-            loginPage = new LoginPage(page);
-            itemsPage = new ItemsPage(page);
-            checkoutPage = new CheckoutPage(page);
         }
         catch (Exception e) {
             e.printStackTrace();
