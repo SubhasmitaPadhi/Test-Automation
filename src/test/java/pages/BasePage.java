@@ -31,6 +31,9 @@ public class BasePage {
             case "chrome":
                 browserType = Playwright.create().chromium();
                 browser = browserType.launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(headless));
+                BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null)); // Launch with full-screen size
+                Page page = context.newPage();
+
                 break;
             case "webkit":
                 browserType = Playwright.create().webkit();

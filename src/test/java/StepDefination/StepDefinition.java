@@ -18,18 +18,16 @@ public class StepDefinition extends BasePage{
     LoginPage loginPage;
     ItemsPage itemsPage;
     CheckoutPage checkoutPage;
+    ElementPage elementPage;
 
     Page page;
 
-    @Given("^User launched SwagLabs application$")
-    public void user_launched_swaglabs_application() {
+    @Given("^User launched DemoQa application$")
+    public void lunchDemoQAURL() {
         try {
             System.out.println("browser::" + WebActions.getProperty("browser"));
             page = createPlaywrightPageInstance(WebActions.getProperty("browser"));
             page.navigate(WebActions.getProperty("url"));
-            loginPage = new LoginPage(page);
-            itemsPage = new ItemsPage(page);
-            checkoutPage = new CheckoutPage(page);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -70,6 +68,12 @@ public class StepDefinition extends BasePage{
     public void user_should_get_the_Confirmation_of_Order() {
         checkoutPage.checkoutSuccessful();
     }
+
+    @When("User clicks on element button")
+    public void user_clicks_on_element_button() {
+        System.out.println("User is on the homepage");
+       }
+
 
     @After
     public void tearDown(Scenario scenario) {
